@@ -2,7 +2,7 @@
 
 **Author(s):** _\<your name(s)\>_
 
-[![Build Status](https://travis-ci.org/chapman-phys220-2016f/cw-06-YOURNAME.svg?branch=master)](https://travis-ci.org/chapman-phys220-2016f/cw-06-YOURNAME)
+[![Build Status](https://travis-ci.org/chapman-phys220-2016f/cw-06-saktill.svg?branch=master)](https://travis-ci.org/chapman-phys220-2016f/cw-06-saktill)
 
 **Due date:** 2016/10/11
 
@@ -35,4 +35,4 @@ I pledge that all the work in this repository is my own with only the following 
 
 Signed,
 
-**YOURNAME**
+Sakthi and Will
