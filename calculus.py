@@ -87,6 +87,10 @@ def vcd(x_i,f_x,order):
     return x_i, f_x, d1
 
 def make_trap_matrix(h,N):
+    """Takes in step size h and the number of partition points used for integration N.
+    Creates an NxN integration matrix which is a lower triangular matrix. With main 
+    diagonal and first column equal to h/2 and the rest of the lower triangle equal to h.
+    """
     I = np.zeros((N+1,N+1))
     for i in range(1,N+1):
         for j in range(0,N+1):
@@ -97,19 +101,31 @@ def make_trap_matrix(h,N):
             I[i][j] += I[i-1][j]
     return I
 
-print(make_trap_matrix(4,7))
-
 def vec_trapz(f,a,b,N):
+    """Parameters: Function, interval [a,b] and sample points N. Returns
+    integrated function"""
     x_i = np.linspace(a,b,N+1)
     f_x = f(x_i)
     l = vt(x_i,f_x)
     return l
 
 def vt(x_i,f_x):
-	N = len(x_i) - 1
-	h = x_i[1] - x_i[0]
-	I = make_trap_matrix(h,N)
-	integral = np.dot(I,f_x)
-	return x_i, f_x, integral
+    """Takes in an array of points and a vectorized function. Creates the trapezoidal matrix and acts it onto the
+    vectorized function. Returns the input parameters and the integral"""
+    N = len(x_i) - 1
+    h = x_i[1] - x_i[0]
+    I = make_trap_matrix(h,N)
+    integral = np.dot(I,f_x)
+    return x_i, f_x, integral
 
-
+def test_vectrapz():
+    """ testing the vect_trapz function with a moderately
+    high error tolerance"""
+    #On the interval from 0 to 10 the integral of x^3 = 2500
+    xCubedInt = 2500
+    a = vec_trapz(lambda x: x**3, 0,10,100)
+    l = a[2]
+    if(abs(l[100] - 2500) < 1):
+        return True
+    else:
+        return False
